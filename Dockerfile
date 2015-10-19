@@ -29,8 +29,8 @@ RUN chmod 755 /sbin/entrypoint.sh \
  && ln -s /var/cache/postgresql/dicts/en_us.dict /usr/share/postgresql/9.3/tsearch_data/en_us.dict \
  && ln -s /var/cache/postgresql/dicts/en_us.dict /usr/share/postgresql/${PG_VERSION}/tsearch_data/en_us.dict \
  && ln -s /var/cache/postgresql/dicts/en_us.affix /usr/share/postgresql/9.3/tsearch_data/en_us.affix \
- && ln -s /var/cache/postgresql/dicts/en_us.affix /usr/share/postgresql/${PG_VERSION}/tsearch_data/en_us.affix
-
+ && ln -s /var/cache/postgresql/dicts/en_us.affix /usr/share/postgresql/${PG_VERSION}/tsearch_data/en_us.affix \
+ && ln -s /usr/share/postgresql/9.3/extension/tsearch_extras.control /usr/share/postgresql/9.4/extension/tsearch_extras.control
 EXPOSE 5432/tcp
 VOLUME ["${PG_HOME}", "${PG_RUNDIR}"]
 CMD ["/sbin/entrypoint.sh"]
