@@ -16,6 +16,7 @@ ADD zulip_english.stop /usr/share/postgresql/9.3/tsearch_data/zulip_english.stop
 ADD entrypoint.sh /sbin/entrypoint.sh
 RUN chmod 755 /sbin/entrypoint.sh \
  && wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add - \
+ && wget --quiet -O - /root/zulip-ppa.asc https://zulip.com/dist/keys/zulip-ppa.asc | apt-key add - \
  && echo 'deb http://apt.postgresql.org/pub/repos/apt/ trusty-pgdg main' > /etc/apt/sources.list.d/pgdg.list \
  && echo "deb http://ppa.launchpad.net/tabbott/zulip/ubuntu trusty main" > /etc/apt/sources.list.d/zulip.list \
  && apt-get update \
