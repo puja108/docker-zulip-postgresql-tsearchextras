@@ -1,4 +1,9 @@
-[![Circle CI](https://circleci.com/gh/sameersbn/docker-postgresql.svg?style=svg)](https://circleci.com/gh/sameersbn/docker-postgresql) [![Docker Repository on Quay.io](https://quay.io/repository/sameersbn/postgresql/status "Docker Repository on Quay.io")](https://quay.io/repository/sameersbn/postgresql)
+#docker-zulip-postgresql-tsearchextras
+[![Docker Repository on Quay.io](https://quay.io/repository/galexrt/docker-zulip-postgresql-tsearchextras/status "Docker Repository on Quay.io")](https://quay.io/repository/galexrt/docker-zulip-postgresql-tsearchextras)
+
+This is the sameersbn/postgresql image with the zulip postgressql-9.3/9.4-tsearch-extras installed.
+
+___
 
 # Table of Contents
 
