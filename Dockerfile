@@ -13,6 +13,8 @@ ENV PG_CONFDIR="/etc/postgresql/${PG_VERSION}/main" \
     PG_DATADIR="${PG_HOME}/${PG_VERSION}/main"
 
 ADD zulip_english.stop /usr/share/postgresql/9.3/tsearch_data/zulip_english.stop
+ADD en_us.dict /var/cache/postgresql/dicts/en_us.dict
+ADD en_us.affix /var/cache/postgresql/dicts/en_us.affix
 ADD entrypoint.sh /sbin/entrypoint.sh
 RUN chmod 755 /sbin/entrypoint.sh \
  && wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add - \
@@ -24,11 +26,11 @@ RUN chmod 755 /sbin/entrypoint.sh \
  && rm -rf ${PG_HOME} \
  && rm -rf /var/lib/apt/lists/* \
  && ls -ahl /var/cache/postgresql/dicsts \
- && mkdir -p /usr/share/postgresql/9.3/tsearch_data /usr/share/postgresql/9.4/tsearch_data \
+ && mkdir -p /usr/share/postgresql/9.3/tsearch_data /usr/share/postgresql/${PG_VERSION}/tsearch_data \
  && ln -s /var/cache/postgresql/dicts/en_us.dict /usr/share/postgresql/9.3/tsearch_data/en_us.dict \
+ && ln -s /var/cache/postgresql/dicts/en_us.dict /usr/share/postgresql/${PG_VERSION}/tsearch_data/en_us.dict \
  && ln -s /var/cache/postgresql/dicts/en_us.affix /usr/share/postgresql/9.3/tsearch_data/en_us.affix \
- && ln -s /var/cache/postgresql/dicts/en_us.dict /usr/share/postgresql/9.4/tsearch_data/en_us.dict \
- && ln -s /var/cache/postgresql/dicts/en_us.affix /usr/share/postgresql/9.4/tsearch_data/en_us.affix
+ && ln -s /var/cache/postgresql/dicts/en_us.affix /usr/share/postgresql/${PG_VERSION}/tsearch_data/en_us.affix
 
 EXPOSE 5432/tcp
 VOLUME ["${PG_HOME}", "${PG_RUNDIR}"]
