@@ -25,7 +25,6 @@ RUN chmod 755 /sbin/entrypoint.sh \
  && DEBIAN_FRONTEND=noninteractive apt-get install -y postgresql-${PG_VERSION} postgresql-client-${PG_VERSION} postgresql-contrib-${PG_VERSION} postgresql-9.3-tsearch-extras \
  && rm -rf ${PG_HOME} \
  && rm -rf /var/lib/apt/lists/* \
- && ls -ahl /var/cache/postgresql/dicsts \
  && mkdir -p /usr/share/postgresql/9.3/tsearch_data /usr/share/postgresql/${PG_VERSION}/tsearch_data \
  && ln -s /var/cache/postgresql/dicts/en_us.dict /usr/share/postgresql/9.3/tsearch_data/en_us.dict \
  && ln -s /var/cache/postgresql/dicts/en_us.dict /usr/share/postgresql/${PG_VERSION}/tsearch_data/en_us.dict \
