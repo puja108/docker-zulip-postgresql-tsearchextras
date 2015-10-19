@@ -23,8 +23,11 @@ RUN chmod 755 /sbin/entrypoint.sh \
  && rm -rf ${PG_HOME} \
  && rm -rf /var/lib/apt/lists/* \
  && ls -ahl /var/cache/postgresql/dicsts \
+ && mkdir -p /usr/share/postgresql/9.3/tsearch_data /usr/share/postgresql/9.4/tsearch_data \
  && ln -s /var/cache/postgresql/dicts/en_us.dict /usr/share/postgresql/9.3/tsearch_data/en_us.dict \
- && ln -s /var/cache/postgresql/dicts/en_us.affix /usr/share/postgresql/9.3/tsearch_data/en_us.affix
+ && ln -s /var/cache/postgresql/dicts/en_us.affix /usr/share/postgresql/9.3/tsearch_data/en_us.affix \
+ && ln -s /var/cache/postgresql/dicts/en_us.dict /usr/share/postgresql/9.4/tsearch_data/en_us.dict \
+ && ln -s /var/cache/postgresql/dicts/en_us.affix /usr/share/postgresql/9.4/tsearch_data/en_us.affix
 
 EXPOSE 5432/tcp
 VOLUME ["${PG_HOME}", "${PG_RUNDIR}"]
