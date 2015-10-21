@@ -1,7 +1,7 @@
 all: build
 
 build:
-	@docker build --tag=quay.io/sameersbn/postgresql .
+	@docker build --tag=quay.io/galexrt/zulip-postgresql-tsearchextras .
 
 release: build
-	@docker build --tag=quay.io/sameersbn/postgresql:$(shell cat VERSION) .
+	@docker build --tag=quay.io/galexrt/zulip-postgresql-tsearchextras:$(shell cat VERSION) .

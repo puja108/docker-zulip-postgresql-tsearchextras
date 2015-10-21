@@ -1,5 +1,4 @@
 FROM quay.io/sameersbn/ubuntu:14.04.20151013
-MAINTAINER sameer@damagehead.com
 MAINTAINER galexrt@googlemail.com
 
 ENV PG_VERSION=9.4 \
@@ -28,7 +27,8 @@ RUN chmod 755 /sbin/entrypoint.sh && \
     mkdir -p /usr/share/postgresql/${PG_VERSION}/tsearch_data && \
     ln -s /var/cache/postgresql/dicts/en_us.dict /usr/share/postgresql/${PG_VERSION}/tsearch_data/en_us.dict && \
     ln -s /var/cache/postgresql/dicts/en_us.affix /usr/share/postgresql/${PG_VERSION}/tsearch_data/en_us.affix && \
-    ln -s /usr/share/postgresql/9.3/extension/tsearch_extras.control /usr/share/postgresql/9.4/extension/tsearch_extras.control
+    ln -s /usr/share/postgresql/9.3/extension/tsearch_extras.control /usr/share/postgresql/9.4/extension/tsearch_extras.control && \
+    ln -s /usr/share/postgresql/9.3/extension/tsearch_extras--1.0.sql /usr/share/postgresql/9.4/extension/tsearch_extras--1.0.sql
 
 EXPOSE 5432/tcp
 VOLUME ["${PG_HOME}", "${PG_RUNDIR}"]
