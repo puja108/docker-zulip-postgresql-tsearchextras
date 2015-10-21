@@ -12,6 +12,7 @@ DB_PASS=${DB_PASS:-}
 DB_LOCALE=${DB_LOCALE:-C}
 DB_UNACCENT=${DB_UNACCENT:false}
 DB_ROOT_PASS=${DB_ROOT_PASS:-}
+PSQL_CREATE_TSEARCH_EXT=${PSQL_CREATE_TSEARCH_EXT:false}
 
 # by default postgresql will start up as a standalone instance.
 # set this environment variable to master, slave or snapshot to use replication features.
@@ -226,6 +227,13 @@ if [[ ${PSQL_MODE} == standalone || ${PSQL_MODE} == master ]]; then
       if [[ ${DB_UNACCENT} == true ]]; then
         echo "Installing unaccent extension..."
         echo "CREATE EXTENSION IF NOT EXISTS unaccent;" | \
+          sudo -Hu ${PG_USER} ${PG_BINDIR}/postgres --single ${db} \
+            -D ${PG_DATADIR} -c config_file=${PG_CONFDIR}/postgresql.conf >/dev/null
+      fi
+
+      if [[ ${PSQL_CREATE_TSEARCH_EXT} == true ]]; then
+        echo "Installing tsearch extension..."
+        echo "CREATE EXTENSION IF NOT EXISTS tsearch_extras;" | \
           sudo -Hu ${PG_USER} ${PG_BINDIR}/postgres --single ${db} \
             -D ${PG_DATADIR} -c config_file=${PG_CONFDIR}/postgresql.conf >/dev/null
       fi
