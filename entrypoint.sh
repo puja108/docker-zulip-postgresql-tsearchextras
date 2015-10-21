@@ -225,14 +225,14 @@ if [[ ${PSQL_MODE} == standalone || ${PSQL_MODE} == master ]]; then
           -D ${PG_DATADIR} -c config_file=${PG_CONFDIR}/postgresql.conf >/dev/null
 
       if [[ ${DB_UNACCENT} == true ]]; then
-        echo "Installing unaccent extension..."
+        echo "Installing unaccent extension for \"${db}\"..."
         echo "CREATE EXTENSION IF NOT EXISTS unaccent;" | \
           sudo -Hu ${PG_USER} ${PG_BINDIR}/postgres --single ${db} \
             -D ${PG_DATADIR} -c config_file=${PG_CONFDIR}/postgresql.conf >/dev/null
       fi
 
       if [[ ${PSQL_CREATE_TSEARCH_EXT} == true ]]; then
-        echo "Installing tsearch extension..."
+        echo "Installing tsearch extension for \"${db}\"..."
         echo "CREATE EXTENSION IF NOT EXISTS tsearch_extras;" | \
           sudo -Hu ${PG_USER} ${PG_BINDIR}/postgres --single ${db} \
             -D ${PG_DATADIR} -c config_file=${PG_CONFDIR}/postgresql.conf >/dev/null
