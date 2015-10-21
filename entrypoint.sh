@@ -12,7 +12,7 @@ DB_PASS=${DB_PASS:-}
 DB_LOCALE=${DB_LOCALE:-C}
 DB_UNACCENT=${DB_UNACCENT:false}
 DB_ROOT_PASS=${DB_ROOT_PASS:-}
-PSQL_CREATE_TSEARCH_EXT=${PSQL_CREATE_TSEARCH_EXT:false}
+PSQL_CREATE_TSEARCH_EXT=${PSQL_CREATE_TSEARCH_EXT:true}
 
 # by default postgresql will start up as a standalone instance.
 # set this environment variable to master, slave or snapshot to use replication features.
