@@ -11,6 +11,7 @@ DB_USER=${DB_USER:-}
 DB_PASS=${DB_PASS:-}
 DB_LOCALE=${DB_LOCALE:-C}
 DB_UNACCENT=${DB_UNACCENT:false}
+DB_ROOT_PASS=${DB_ROOT_PASS:-}
 
 # by default postgresql will start up as a standalone instance.
 # set this environment variable to master, slave or snapshot to use replication features.
@@ -237,6 +238,14 @@ if [[ ${PSQL_MODE} == standalone || ${PSQL_MODE} == master ]]; then
       fi
     done
   fi
+fi
+echo "Setting superuser password..."
+if [ ! -z "$DB_ROOT_PASS" ]; then
+    echo "ALTER USER postgres PASSWORD '$DB_ROOT_PASS';" |
+        sudo -Hu ${PG_USER} ${PG_BINDIR}/postgres --single \
+            -D ${PG_DATADIR} -c config_file=${PG_CONFDIR}/postgresql.conf >/dev/null
+else
+    echo "No superuser password given."
 fi
 
 echo "Starting PostgreSQL server..."
