@@ -1,7 +1,7 @@
 all: build
 
 build:
-	@docker build --tag=quay.io/galexrt/zulip-postgresql-tsearchextras .
+	docker build --tag=puja/zulip-postgresql-tsearchextras .
 
 release: build
-	@docker build --tag=quay.io/galexrt/zulip-postgresql-tsearchextras:$(shell cat VERSION) .
+	docker push --tag=puja/zulip-postgresql-tsearchextras:$(shell cat VERSION) .
